@@ -42,8 +42,8 @@ module "art" {
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.13 |
-| aws | 3.16.0 |
+| terraform | >= 0.14 |
+| aws | 3.20.0 |
 | local | 2.0.0 |
 | tls |  3.0.0 |
 
@@ -51,7 +51,7 @@ module "art" {
 
 | Name | Version |
 |------|---------|
-| aws | 3.16.0 |
+| aws | 3.20.0 |
 | local | 2.0.0 |
 | tls |  3.0.0 |
 
@@ -59,17 +59,17 @@ module "art" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| allowed\_cidr | n/a | `list` | n/a | yes |
-| common\_tags | n/a | `map` | n/a | yes |
-| instance\_type | n/a | `string` | `"t2.small"` | no |
+| allowed\_cidr | n/a | `list(any)` | n/a | yes |
+| common\_tags | Implements the common\_tags scheme | `map(any)` | n/a | yes |
+| instance\_type | Instance type for your Artifactory instance | `string` | `"t2.small"` | no |
 | key\_name | n/a | `string` | n/a | yes |
-| record | n/a | `string` | n/a | yes |
+| record | The DNS name for Route53 | `string` | n/a | yes |
 | sec\_group\_name | n/a | `string` | n/a | yes |
-| ssh\_cidr | n/a | `list` | n/a | yes |
-| ssl\_certificate\_id | n/a | `string` | n/a | yes |
-| subnet\_id | n/a | `string` | n/a | yes |
+| ssh\_cidr | n/a | `list(any)` | n/a | yes |
+| ssl\_certificate\_id | Your SSL certificate ID from ACM to add to your Load balancer | `string` | n/a | yes |
+| subnet\_id | Your Subnets... | `string` | n/a | yes |
 | vpc\_id | n/a | `string` | n/a | yes |
-| zone\_id | n/a | `string` | n/a | yes |
+| zone\_id | The ZOne to use for your DNS record | `string` | n/a | yes |
 
 ## Outputs
 
