@@ -17,12 +17,23 @@ This is just a very basic example using Bitnamis AMI.
 
 ![alt text](./diagram/art.png)
 
-Include **module.art.tf** this repository as a module in your existing terraform code:
+Copy the example or just include **module.art.tf** from this repository as a module in your existing Terraform code:
 
 ```terraform
 module "art" {
-  source      = "JamesWoolfenden/appsync/aws"
-  version     = "0.0.4"
+  source             = "JamesWoolfenden/artifactory-oss/aws"
+  version            = "0.1.0"
+  common_tags        = var.common_tags
+  instance_type      = var.instance_type
+  key_name           = var.key_name
+  vpc_id             = var.vpc_id
+  ssl_certificate_id = var.ssl_certificate_id
+  sec_group_name     = var.sec_group_name
+  allowed_cidr       = var.allowed_cidr
+  subnet_id          = var.subnet_id
+  ssh_cidr           = var.ssh_cidr
+  record             = var.record
+  zone_id            = var.zone_id
 }
 ```
 

@@ -3,11 +3,11 @@ variable "key_name" {
 }
 
 variable "ssh_cidr" {
-  type = list
+  type = list(any)
 }
 
 variable "allowed_cidr" {
-  type = list
+  type = list(any)
 }
 
 variable "sec_group_name" {
@@ -15,7 +15,7 @@ variable "sec_group_name" {
 }
 
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 
 variable "vpc_id" {
