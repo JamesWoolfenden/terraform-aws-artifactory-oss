@@ -6,6 +6,8 @@
 .terraform
 .idea
 *.iml
+*.orig
+
 *.ini
 tmp
 lambda
