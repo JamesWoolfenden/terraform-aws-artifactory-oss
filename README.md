@@ -41,6 +41,27 @@ module "art" {
 }
 ```
 
+## Costs
+
+```text
+Monthly cost estimate
+
+Project: .
+
+ Name                                                 Monthly Qty  Unit         Monthly Cost
+
+ module.art.aws_elb.service_elb
+ ├─ Classic load balancer                                     730  hours              $21.46
+ └─ Data processed                                    Cost depends on usage: $0.0084 per GB
+
+ module.art.aws_instance.art
+ ├─ Instance usage (Linux/UNIX, on-demand, t2.small)          730  hours              $18.98
+ ├─ EC2 detailed monitoring                                     7  metrics             $2.10
+ └─ root_block_device
+    └─ Storage (general purpose SSD, gp2)                     100  GB-months          $11.60
+
+ PROJECT TOTAL                                                                        $54.14
+```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 

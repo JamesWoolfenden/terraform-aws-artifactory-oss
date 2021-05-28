@@ -5,8 +5,6 @@ resource "aws_elb" "service_elb" {
   subnets         = [var.subnet_id]
   security_groups = [aws_security_group.elb.id]
   instances       = [aws_instance.art.id]
-
-
   listener {
     instance_port      = 80
     instance_protocol  = "http"

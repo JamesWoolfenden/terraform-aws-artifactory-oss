@@ -1,0 +1,11 @@
+version: 0.1
+resource_usage:
+  module.art.aws_elb.service_elb:
+    monthly_data_processed_gb: 0
+  module.art.aws_instance.art:
+    monthly_cpu_credit_hrs: 0
+    operating_system: linux
+    reserved_instance_payment_option: all_upfront
+    reserved_instance_term: 1_year
+    reserved_instance_type: standard
+    vcpu_count: 0
