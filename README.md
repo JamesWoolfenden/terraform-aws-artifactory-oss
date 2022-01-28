@@ -62,18 +62,20 @@ Project: .
 
  PROJECT TOTAL                                                                        $54.14
 ```
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## Requirements
 
 No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
-| <a name="provider_local"></a> [local](#provider\_local) | n/a |
-| <a name="provider_tls"></a> [tls](#provider\_tls) | n/a |
+| Name                                                   | Version |
+| ------------------------------------------------------ | ------- |
+| <a name="provider_aws"></a> [aws](#provider_aws)       | n/a     |
+| <a name="provider_local"></a> [local](#provider_local) | n/a     |
+| <a name="provider_tls"></a> [tls](#provider_tls)       | n/a     |
 
 ## Modules
 
@@ -81,43 +83,44 @@ No modules.
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [aws_elb.service_elb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elb) | resource |
-| [aws_instance.art](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
-| [aws_key_pair.art](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/key_pair) | resource |
-| [aws_route53_record.www](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
-| [aws_security_group.art](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
-| [aws_security_group.elb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
-| [local_file.private_ssh](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
-| [local_file.public_ssh](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
-| [tls_private_key.ssh](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
-| [aws_ami.art](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
+| Name                                                                                                                                  | Type        |
+| ------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| [aws_elb.service_elb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elb)                                | resource    |
+| [aws_instance.art](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance)                              | resource    |
+| [aws_key_pair.art](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/key_pair)                              | resource    |
+| [aws_route53_record.www](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record)                  | resource    |
+| [aws_security_group.art](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group)                  | resource    |
+| [aws_security_group.elb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group)                  | resource    |
+| [local_file.private_ssh](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file)                          | resource    |
+| [local_file.public_ssh](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file)                           | resource    |
+| [tls_private_key.ssh](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key)                        | resource    |
+| [aws_ami.art](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami)                                     | data source |
 | [aws_ebs_default_kms_key.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ebs_default_kms_key) | data source |
 
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_allowed_cidr"></a> [allowed\_cidr](#input\_allowed\_cidr) | n/a | `list(any)` | n/a | yes |
-| <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | Implements the common\_tags scheme | `map(any)` | n/a | yes |
-| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type for your Artifactory instance | `string` | `"t2.small"` | no |
-| <a name="input_key_name"></a> [key\_name](#input\_key\_name) | n/a | `string` | n/a | yes |
-| <a name="input_record"></a> [record](#input\_record) | The DNS name for Route53 | `string` | n/a | yes |
-| <a name="input_sec_group_name"></a> [sec\_group\_name](#input\_sec\_group\_name) | n/a | `string` | n/a | yes |
-| <a name="input_ssh_cidr"></a> [ssh\_cidr](#input\_ssh\_cidr) | n/a | `list(any)` | n/a | yes |
-| <a name="input_ssl_certificate_id"></a> [ssl\_certificate\_id](#input\_ssl\_certificate\_id) | Your SSL certificate ID from ACM to add to your Load balancer | `string` | n/a | yes |
-| <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | Your Subnets... | `string` | n/a | yes |
-| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | n/a | yes |
-| <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | The ZOne to use for your DNS record | `string` | n/a | yes |
+| Name                                                                                    | Description                                                   | Type        | Default      | Required |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ----------- | ------------ | :------: |
+| <a name="input_allowed_cidr"></a> [allowed_cidr](#input_allowed_cidr)                   | n/a                                                           | `list(any)` | n/a          |   yes    |
+| <a name="input_common_tags"></a> [common_tags](#input_common_tags)                      | Implements the common_tags scheme                             | `map(any)`  | n/a          |   yes    |
+| <a name="input_instance_type"></a> [instance_type](#input_instance_type)                | Instance type for your Artifactory instance                   | `string`    | `"t2.small"` |    no    |
+| <a name="input_key_name"></a> [key_name](#input_key_name)                               | n/a                                                           | `string`    | n/a          |   yes    |
+| <a name="input_record"></a> [record](#input_record)                                     | The DNS name for Route53                                      | `string`    | n/a          |   yes    |
+| <a name="input_sec_group_name"></a> [sec_group_name](#input_sec_group_name)             | n/a                                                           | `string`    | n/a          |   yes    |
+| <a name="input_ssh_cidr"></a> [ssh_cidr](#input_ssh_cidr)                               | n/a                                                           | `list(any)` | n/a          |   yes    |
+| <a name="input_ssl_certificate_id"></a> [ssl_certificate_id](#input_ssl_certificate_id) | Your SSL certificate ID from ACM to add to your Load balancer | `string`    | n/a          |   yes    |
+| <a name="input_subnet_id"></a> [subnet_id](#input_subnet_id)                            | Your Subnets...                                               | `string`    | n/a          |   yes    |
+| <a name="input_vpc_id"></a> [vpc_id](#input_vpc_id)                                     | n/a                                                           | `string`    | n/a          |   yes    |
+| <a name="input_zone_id"></a> [zone_id](#input_zone_id)                                  | The ZOne to use for your DNS record                           | `string`    | n/a          |   yes    |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_elb"></a> [elb](#output\_elb) | n/a |
-| <a name="output_instance"></a> [instance](#output\_instance) | n/a |
-| <a name="output_record"></a> [record](#output\_record) | n/a |
+| Name                                                        | Description |
+| ----------------------------------------------------------- | ----------- |
+| <a name="output_elb"></a> [elb](#output_elb)                | n/a         |
+| <a name="output_instance"></a> [instance](#output_instance) | n/a         |
+| <a name="output_record"></a> [record](#output_record)       | n/a         |
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Related Projects
@@ -140,7 +143,7 @@ Please use the [issue tracker](https://github.com/JamesWoolfenden/terraform-aws-
 
 ## Copyrights
 
-Copyright © 2019-2021 James Woolfenden
+Copyright © 2019-2022 James Woolfenden
 
 ## License
 
