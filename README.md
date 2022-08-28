@@ -121,6 +121,11 @@ No modules.
 | <a name="output_record"></a> [record](#output\_record) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
+## Policy
+
+<!-- BEGINNING OF PRE-COMMIT-PIKE DOCS HOOK -->
+<!-- END OF PRE-COMMIT-PIKE DOCS HOOK -->
+
 ## Related Projects
 
 Check out these related projects.
@@ -172,11 +177,3 @@ under the License.
 
 [jameswoolfenden_homepage]: https://github.com/jameswoolfenden
 [jameswoolfenden_avatar]: https://github.com/jameswoolfenden.png?size=150
-[github]: https://github.com/jameswoolfenden
-[linkedin]: https://www.linkedin.com/in/jameswoolfenden/
-[twitter]: https://twitter.com/JimWoolfenden
-[share_twitter]: https://twitter.com/intent/tweet/?text=terraform-aws-artifactory-oss&url=https://github.com/JamesWoolfenden/terraform-aws-artifactory-oss
-[share_linkedin]: https://www.linkedin.com/shareArticle?mini=true&title=terraform-aws-artifactory-oss&url=https://github.com/JamesWoolfenden/terraform-aws-artifactory-oss
-[share_reddit]: https://reddit.com/submit/?url=https://github.com/JamesWoolfenden/terraform-aws-artifactory-oss
-[share_facebook]: https://facebook.com/sharer/sharer.php?u=https://github.com/JamesWoolfenden/terraform-aws-artifactory-oss
-[share_email]: mailto:?subject=terraform-aws-artifactory-oss&body=https://github.com/JamesWoolfenden/terraform-aws-artifactory-oss
