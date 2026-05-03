@@ -2,6 +2,7 @@ resource "aws_elb" "service_elb" {
   # tfsec:ignore:AWS005
   # checkov:skip= CKV_AWS_92: "Ensure the ELB has access logging enabled"
   # checkov:skip= CKV_AWS_127: not appropriate
+  # checkov:skip=CKV_AWS_376: SSH listener uses TCP by design
   subnets         = [var.subnet_id]
   security_groups = [aws_security_group.elb.id]
   instances       = [aws_instance.art.id]
