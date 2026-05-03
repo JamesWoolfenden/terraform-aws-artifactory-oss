@@ -1,8 +1,8 @@
 instance_profile = "replace-me"
 key_name         = "artifactory"
-ssh_cidr       = ["86.147.65.243/32"]
-allowed_cidr   = ["86.147.65.243/32"]
-sec_group_name = "Artifactory"
+ssh_cidr         = ["86.147.65.243/32"]
+allowed_cidr     = ["86.147.65.243/32"]
+sec_group_name   = "Artifactory"
 common_tags = {
   "createdby" = "terraform"
 }

@@ -139,6 +139,7 @@ resource "aws_iam_policy" "terraform_pike" {
             "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": [
+                "ec2:AssociateIamInstanceProfile",
                 "ec2:AuthorizeSecurityGroupEgress",
                 "ec2:AuthorizeSecurityGroupIngress",
                 "ec2:CreateKeyPair",
@@ -149,6 +150,7 @@ resource "aws_iam_policy" "terraform_pike" {
                 "ec2:DeleteSecurityGroup",
                 "ec2:DeleteTags",
                 "ec2:DescribeAccountAttributes",
+                "ec2:DescribeIamInstanceProfileAssociations",
                 "ec2:DescribeImages",
                 "ec2:DescribeInstanceAttribute",
                 "ec2:DescribeInstanceCreditSpecifications",
@@ -161,10 +163,12 @@ resource "aws_iam_policy" "terraform_pike" {
                 "ec2:DescribeTags",
                 "ec2:DescribeVolumes",
                 "ec2:DetachNetworkInterface",
+                "ec2:DisassociateIamInstanceProfile",
                 "ec2:GetEbsDefaultKmsKeyId",
                 "ec2:ImportKeyPair",
                 "ec2:ModifyInstanceAttribute",
                 "ec2:MonitorInstances",
+                "ec2:ReplaceIamInstanceProfileAssociation",
                 "ec2:RevokeSecurityGroupEgress",
                 "ec2:RevokeSecurityGroupIngress",
                 "ec2:RunInstances",
@@ -201,6 +205,16 @@ resource "aws_iam_policy" "terraform_pike" {
             "Sid": "VisualEditor2",
             "Effect": "Allow",
             "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor3",
+            "Effect": "Allow",
+            "Action": [
                 "route53:ChangeResourceRecordSets",
                 "route53:GetChange",
                 "route53:GetHostedZone",
@@ -211,7 +225,7 @@ resource "aws_iam_policy" "terraform_pike" {
             ]
         },
         {
-            "Sid": "VisualEditor3",
+            "Sid": "VisualEditor4",
             "Effect": "Allow",
             "Action": [
                 "ssm:DeleteParameter",
