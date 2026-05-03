@@ -1,4 +1,5 @@
-key_name       = "artifactory"
+instance_profile = "replace-me"
+key_name         = "artifactory"
 ssh_cidr       = ["86.147.65.243/32"]
 allowed_cidr   = ["86.147.65.243/32"]
 sec_group_name = "Artifactory"
