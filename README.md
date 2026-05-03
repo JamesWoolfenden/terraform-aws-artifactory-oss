@@ -145,6 +145,7 @@ resource "aws_iam_policy" "terraform_pike" {
                 "ec2:CreateSecurityGroup",
                 "ec2:CreateTags",
                 "ec2:DeleteKeyPair",
+                "ec2:DeleteNetworkInterface",
                 "ec2:DeleteSecurityGroup",
                 "ec2:DeleteTags",
                 "ec2:DescribeAccountAttributes",
@@ -156,8 +157,10 @@ resource "aws_iam_policy" "terraform_pike" {
                 "ec2:DescribeKeyPairs",
                 "ec2:DescribeNetworkInterfaces",
                 "ec2:DescribeSecurityGroups",
+                "ec2:DescribeSubnets",
                 "ec2:DescribeTags",
                 "ec2:DescribeVolumes",
+                "ec2:DetachNetworkInterface",
                 "ec2:GetEbsDefaultKmsKeyId",
                 "ec2:ImportKeyPair",
                 "ec2:ModifyInstanceAttribute",
@@ -170,7 +173,9 @@ resource "aws_iam_policy" "terraform_pike" {
                 "ec2:TerminateInstances",
                 "ec2:UnmonitorInstances"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         },
         {
             "Sid": "VisualEditor1",
@@ -185,9 +190,12 @@ resource "aws_iam_policy" "terraform_pike" {
                 "elasticloadbalancing:DescribeLoadBalancers",
                 "elasticloadbalancing:DescribeTags",
                 "elasticloadbalancing:ModifyLoadBalancerAttributes",
-                "elasticloadbalancing:RemoveTags"
+                "elasticloadbalancing:RemoveTags",
+                "elasticloadbalancing:SetSecurityGroups"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
         },
         {
             "Sid": "VisualEditor2",
@@ -198,7 +206,20 @@ resource "aws_iam_policy" "terraform_pike" {
                 "route53:GetHostedZone",
                 "route53:ListResourceRecordSets"
             ],
-            "Resource": "*"
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor3",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:DeleteParameter",
+                "ssm:PutParameter"
+            ],
+            "Resource": [
+                "*"
+            ]
         }
     ]
 })
