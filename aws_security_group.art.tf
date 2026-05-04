@@ -1,4 +1,5 @@
 resource "aws_security_group" "art" {
+  # checkov:skip=CKV_AWS_382: Unrestricted outbound access required for resource functionality
   description = "Open Source Artifactory"
   egress = [
     {
