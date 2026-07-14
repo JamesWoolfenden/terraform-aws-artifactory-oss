@@ -1,5 +1,6 @@
 resource "aws_security_group" "elb" {
   # checkov:skip=CKV_AWS_382: Unrestricted outbound access required for resource functionality
+  # holden:ignore:HLD_AWS_092: Unrestricted outbound access required for resource functionality
   name        = "${var.sec_group_name}-elb"
   vpc_id      = var.vpc_id
   description = "Protects ELB access"
@@ -37,6 +38,4 @@ resource "aws_security_group" "elb" {
     security_groups = []
     self            = false
   }]
-
-  tags = var.common_tags
 }

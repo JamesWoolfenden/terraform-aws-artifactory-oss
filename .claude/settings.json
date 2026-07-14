@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "\\"
+    ],
+    "allow": [
+      "Bash(terraform init *)",
+      "Bash(python3 -c ' *)",
+      "Bash(holden list *)"
+    ]
+  }
+}

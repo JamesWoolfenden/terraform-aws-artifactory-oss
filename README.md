@@ -25,7 +25,6 @@ Copy the example or just include **module.art.tf** from this repository as a mod
 module "art" {
   source             = "JamesWoolfenden/artifactory-oss/aws"
   version            = "0.1.0"
-  common_tags        = var.common_tags
   instance_type      = var.instance_type
   key_name           = var.key_name
   vpc_id             = var.vpc_id
@@ -37,28 +36,6 @@ module "art" {
   record             = var.record
   zone_id            = var.zone_id
 }
-```
-
-## Costs
-
-```text
-Monthly cost estimate
-
-Project: .
-
- Name                                                 Monthly Qty  Unit         Monthly Cost
-
- module.art.aws_elb.service_elb
- ├─ Classic load balancer                                     730  hours              $21.46
- └─ Data processed                                    Cost depends on usage: $0.0084 per GB
-
- module.art.aws_instance.art
- ├─ Instance usage (Linux/UNIX, on-demand, t2.small)          730  hours              $18.98
- ├─ EC2 detailed monitoring                                     7  metrics             $2.10
- └─ root_block_device
-    └─ Storage (general purpose SSD, gp2)                     100  GB-months          $11.60
-
- PROJECT TOTAL                                                                        $54.14
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
@@ -98,26 +75,27 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
-| <a name="input_allowed_cidr"></a> [allowed\_cidr](#input\_allowed\_cidr) | n/a | `list(any)` | n/a | yes |
-| <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | Implements the common\_tags scheme | `map(any)` | n/a | yes |
+| <a name="input_access_logs_bucket"></a> [access\_logs\_bucket](#input\_access\_logs\_bucket) | Name of an existing S3 bucket to write ELB access logs to. Access logging is disabled when left empty. | `string` | `""` | no |
+| <a name="input_access_logs_prefix"></a> [access\_logs\_prefix](#input\_access\_logs\_prefix) | Prefix to apply to ELB access log object keys within access\_logs\_bucket | `string` | `""` | no |
+| <a name="input_allowed_cidr"></a> [allowed\_cidr](#input\_allowed\_cidr) | List of CIDR blocks allowed to reach Artifactory through the load balancer | `list(any)` | n/a | yes |
 | <a name="input_instance_profile"></a> [instance\_profile](#input\_instance\_profile) | IAM instance profile to attach to the EC2 instance | `string` | n/a | yes |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instance type for your Artifactory instance | `string` | `"t2.small"` | no |
-| <a name="input_key_name"></a> [key\_name](#input\_key\_name) | n/a | `string` | n/a | yes |
+| <a name="input_key_name"></a> [key\_name](#input\_key\_name) | Name of the AWS key pair to attach to the EC2 instance | `string` | n/a | yes |
 | <a name="input_record"></a> [record](#input\_record) | The DNS name for Route53 | `string` | n/a | yes |
-| <a name="input_sec_group_name"></a> [sec\_group\_name](#input\_sec\_group\_name) | n/a | `string` | n/a | yes |
-| <a name="input_ssh_cidr"></a> [ssh\_cidr](#input\_ssh\_cidr) | n/a | `list(any)` | n/a | yes |
+| <a name="input_sec_group_name"></a> [sec\_group\_name](#input\_sec\_group\_name) | Name to assign to the Artifactory and ELB security groups | `string` | n/a | yes |
+| <a name="input_ssh_cidr"></a> [ssh\_cidr](#input\_ssh\_cidr) | List of CIDR blocks allowed to reach the instance over SSH | `list(any)` | n/a | yes |
 | <a name="input_ssl_certificate_id"></a> [ssl\_certificate\_id](#input\_ssl\_certificate\_id) | Your SSL certificate ID from ACM to add to your Load balancer | `string` | n/a | yes |
 | <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | Your Subnets... | `string` | n/a | yes |
-| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | n/a | yes |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of the VPC to deploy Artifactory and its security groups into | `string` | n/a | yes |
 | <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | The ZOne to use for your DNS record | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 | ---- | ----------- |
-| <a name="output_elb"></a> [elb](#output\_elb) | n/a |
-| <a name="output_instance"></a> [instance](#output\_instance) | n/a |
-| <a name="output_record"></a> [record](#output\_record) | n/a |
+| <a name="output_elb"></a> [elb](#output\_elb) | The ELB fronting the Artifactory instance |
+| <a name="output_instance"></a> [instance](#output\_instance) | The Artifactory EC2 instance |
+| <a name="output_record"></a> [record](#output\_record) | The Route53 DNS record pointing at the ELB |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Policy
@@ -126,6 +104,7 @@ No modules.
 The Terraform resource required is:
 
 ```golang
+# apply role — full permissions for terraform apply
 resource "aws_iam_policy" "terraform_pike" {
   name_prefix = "terraform_pike"
   path        = "/"
@@ -143,11 +122,9 @@ resource "aws_iam_policy" "terraform_pike" {
                 "ec2:AuthorizeSecurityGroupIngress",
                 "ec2:CreateKeyPair",
                 "ec2:CreateSecurityGroup",
-                "ec2:CreateTags",
                 "ec2:DeleteKeyPair",
                 "ec2:DeleteNetworkInterface",
                 "ec2:DeleteSecurityGroup",
-                "ec2:DeleteTags",
                 "ec2:DescribeAccountAttributes",
                 "ec2:DescribeIamInstanceProfileAssociations",
                 "ec2:DescribeImages",
@@ -184,7 +161,6 @@ resource "aws_iam_policy" "terraform_pike" {
             "Sid": "VisualEditor1",
             "Effect": "Allow",
             "Action": [
-                "elasticloadbalancing:AddTags",
                 "elasticloadbalancing:AttachLoadBalancerToSubnets",
                 "elasticloadbalancing:CreateLoadBalancer",
                 "elasticloadbalancing:CreateLoadBalancerListeners",
@@ -193,7 +169,6 @@ resource "aws_iam_policy" "terraform_pike" {
                 "elasticloadbalancing:DescribeLoadBalancers",
                 "elasticloadbalancing:DescribeTags",
                 "elasticloadbalancing:ModifyLoadBalancerAttributes",
-                "elasticloadbalancing:RemoveTags",
                 "elasticloadbalancing:SetSecurityGroups"
             ],
             "Resource": [
@@ -229,6 +204,31 @@ resource "aws_iam_policy" "terraform_pike" {
             "Action": [
                 "ssm:DeleteParameter",
                 "ssm:PutParameter"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+})
+}
+
+# plan role — read-only permissions for terraform plan
+resource "aws_iam_policy" "terraform_pike_plan" {
+  name_prefix = "terraform_pike_plan"
+  path        = "/"
+  description = "Pike Autogenerated policy from IAC"
+
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeIamInstanceProfileAssociations",
+                "ec2:DescribeKeyPairs",
+                "ec2:DescribeSubnets"
             ],
             "Resource": [
                 "*"

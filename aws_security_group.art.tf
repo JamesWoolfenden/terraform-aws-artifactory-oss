@@ -1,5 +1,6 @@
 resource "aws_security_group" "art" {
   # checkov:skip=CKV_AWS_382: Unrestricted outbound access required for resource functionality
+  # holden:ignore:HLD_AWS_092: Unrestricted outbound access required for resource functionality
   description = "Open Source Artifactory"
   egress = [
     {
@@ -46,7 +47,6 @@ resource "aws_security_group" "art" {
   ]
   name = var.sec_group_name
 
-  tags   = var.common_tags
   vpc_id = var.vpc_id
 
   timeouts {}

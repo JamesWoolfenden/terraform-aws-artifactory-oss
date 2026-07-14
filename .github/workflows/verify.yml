@@ -10,6 +10,10 @@ permissions:
   id-token: write
   contents: write
 
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   verify:
-    uses: JamesWoolfenden/.github/.github/workflows/terraform-verify.yml@main
+    uses: JamesWoolfenden/.github/.github/workflows/terraform-verify.yml@7e6376f276d0f76e4565243d9c443330804b960e # main

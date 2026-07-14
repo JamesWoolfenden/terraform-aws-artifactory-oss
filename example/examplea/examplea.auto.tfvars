@@ -1,11 +1,8 @@
-instance_profile = "replace-me"
-key_name         = "artifactory"
-ssh_cidr         = ["86.147.65.243/32"]
-allowed_cidr     = ["86.147.65.243/32"]
-sec_group_name   = "Artifactory"
-common_tags = {
-  "createdby" = "terraform"
-}
+instance_profile   = "replace-me"
+key_name           = "artifactory"
+ssh_cidr           = ["86.147.65.243/32"]
+allowed_cidr       = ["86.147.65.243/32"]
+sec_group_name     = "Artifactory"
 vpc_id             = "vpc-0e2e925de622375b5"
 instance_type      = "t2.small"
 subnet_id          = "subnet-05808ec64faaa18ba"

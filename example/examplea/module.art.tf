@@ -1,6 +1,6 @@
 module "art" {
+  # holden:ignore:HLD_TF_026: example root intentionally references the parent module locally
   source             = "../../"
-  common_tags        = var.common_tags
   instance_profile   = var.instance_profile
   instance_type      = var.instance_type
   key_name           = var.key_name
